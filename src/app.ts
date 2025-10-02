@@ -21,12 +21,10 @@ app.use(
   })
 );
 
-app.get('/', (_req, res) => res.json({ ok: true }));
+app.get('/health', (_req, res) => res.json({ ok: true }));
 
-const apiPrefix = process.env.API_PREFIX ?? '/api';
-
-app.use(`${apiPrefix}/auth`, authRoutes);
-app.use(`${apiPrefix}/users`, userRoutes);
-app.use(`${apiPrefix}/blogs`, blogRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/blogs', blogRoutes);
 
 app.use(errorHandler);
