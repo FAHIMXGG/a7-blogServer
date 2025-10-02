@@ -1,6 +1,8 @@
 import { app } from '../src/app';
 
-// Export the Express app directly; Vercel will invoke it as a handler
-export default app as any;
+// Export a function handler that delegates to the Express app
+export default function handler(req: any, res: any) {
+  return (app as any)(req, res);
+}
 
 
