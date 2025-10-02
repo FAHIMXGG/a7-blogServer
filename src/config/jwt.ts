@@ -1,3 +1,4 @@
+// src/config/jwt.ts
 import jwt, { Secret, SignOptions } from 'jsonwebtoken';
 
 export const signJwt = (
