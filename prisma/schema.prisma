@@ -17,6 +17,25 @@ model User {
   isApproved Boolean  @default(true)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+
+  blogs      Blog[]
+}
+
+model Blog {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  content     String
+  excerpt     String?
+  tags        String[]
+  categories  String[]
+  isFeatured  Boolean   @default(false)
+  views       Int       @default(0)
+
+  authorId    String    @db.ObjectId
+  author      User      @relation(fields: [authorId], references: [id])
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 enum Role {

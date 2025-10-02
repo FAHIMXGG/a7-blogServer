@@ -1,9 +1,10 @@
+// src/middlewares/errorHandler.ts
 import { Request, Response, NextFunction } from 'express';
-import { Prisma } from '@prisma/client';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 export const errorHandler = (err: any, _req: Request, res: Response, _next: NextFunction) => {
   // Prisma unique constraint (e.g., duplicate email)
-  if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002') {
+  if (err instanceof PrismaClientKnownRequestError && err.code === 'P2002') {
     const targets = (err.meta?.target as string[]) || ['field'];
     const field = targets.includes('email') ? 'email' : targets[0];
     return res.status(409).json({

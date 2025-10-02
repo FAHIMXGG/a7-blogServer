@@ -1,3 +1,4 @@
+// src/config/prisma.ts
 import { PrismaClient } from '@prisma/client';
 
 declare global {
@@ -6,9 +7,6 @@ declare global {
 }
 
 export const prisma =
-  global.__prisma ??
-  new PrismaClient({
-    log: ['warn', 'error']
-  });
+  global.__prisma ?? new PrismaClient({ log: ['warn', 'error'] });
 
 if (!global.__prisma) global.__prisma = prisma;
