@@ -2,15 +2,10 @@
   "version": 2,
   "functions": {
     "api/index.ts": {
-      "includeFiles": [
-        "prisma/schema.prisma",
-        "node_modules/.prisma/client/**"
-      ],
+      "includeFiles": "node_modules/.prisma/client/**",
       "memory": 1024,
       "maxDuration": 10
     }
   },
-  "routes": [
-    { "src": "/(.*)", "dest": "api/index.ts" }
-  ]
+  "routes": [{ "src": "/(.*)", "dest": "api/index.ts" }]
 }
