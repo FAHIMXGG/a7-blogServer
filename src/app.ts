@@ -21,7 +21,7 @@ app.use(
   })
 );
 
-app.get('/health', (_req, res) => res.json({ ok: true }));
+app.get('/blogs', (_req, res) => res.json({ ok: true }));
 
 const apiPrefix = process.env.API_PREFIX ?? '/api';
 
