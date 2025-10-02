@@ -6,7 +6,11 @@ declare global {
   var __prisma: PrismaClient | undefined;
 }
 
+// In serverless, new client per invocation is fine, but we reuse if present (local dev)
 export const prisma =
-  global.__prisma ?? new PrismaClient({ log: ['warn', 'error'] });
+  global.__prisma ??
+  new PrismaClient({
+    log: ['warn', 'error']
+  });
 
 if (!global.__prisma) global.__prisma = prisma;

@@ -1,8 +1,16 @@
 {
   "version": 2,
-  "env": {
-    "API_PREFIX": ""
-  }
+  "functions": {
+    "api/index.ts": {
+      "includeFiles": [
+        "prisma/schema.prisma",
+        "node_modules/.prisma/client/**"
+      ],
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  },
+  "routes": [
+    { "src": "/(.*)", "dest": "api/index.ts" }
+  ]
 }
-
-

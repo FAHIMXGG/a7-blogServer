@@ -15,11 +15,11 @@ app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
 app.use(
-  cors({
-    origin: true, // set to your FE origin in production
-    credentials: true
-  })
-);
+    cors({
+      origin: process.env.CORS_ORIGIN || true,
+      credentials: true
+    })
+  );
 
 app.get('/health', (_req, res) => res.json({ ok: true }));
 

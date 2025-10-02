@@ -1,8 +1,8 @@
+// api/index.ts
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { app } from '../src/app';
 
-// Export a function handler that delegates to the Express app
-export default function handler(req: any, res: any) {
-  return (app as any)(req, res);
+// Express is a request handler already. We just delegate to it.
+export default function handler(req: VercelRequest, res: VercelResponse) {
+  return app(req, res);
 }
-
-
