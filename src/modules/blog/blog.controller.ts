@@ -16,7 +16,8 @@ const createSchema = z.object({
   excerpt: z.string().optional(),
   tags: z.array(z.string()).default([]).optional(),
   categories: z.array(z.string()).default([]).optional(),
-  isFeatured: z.boolean().default(false).optional()
+  isFeatured: z.boolean().default(false).optional(),
+  thumbnailUrl: z.string().url('Invalid thumbnail URL').optional()
 });
 
 const updateSchema = createSchema.partial();

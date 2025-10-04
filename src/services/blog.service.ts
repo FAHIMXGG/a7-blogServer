@@ -8,6 +8,7 @@ export type CreateBlogInput = {
   categories?: string[];
   isFeatured?: boolean;
   authorId: string;
+  thumbnailUrl?: string | null;
 };
 
 export type UpdateBlogInput = Partial<Omit<CreateBlogInput, 'authorId'>>;
@@ -26,6 +27,7 @@ export const createBlog = async (payload: CreateBlogInput) => {
       tags: payload.tags ?? [],
       categories: payload.categories ?? [],
       isFeatured: payload.isFeatured ?? false,
+      thumbnailUrl: payload.thumbnailUrl ?? null,
       authorId: payload.authorId
     },
     include: { author: true }
@@ -95,7 +97,8 @@ export const updateBlog = async (id: string, payload: UpdateBlogInput) => {
       excerpt: payload.excerpt ?? undefined,
       tags: payload.tags ?? undefined,
       categories: payload.categories ?? undefined,
-      isFeatured: payload.isFeatured ?? undefined
+      isFeatured: payload.isFeatured ?? undefined,
+      thumbnailUrl: payload.thumbnailUrl ?? undefined
     },
     include: { author: true }
   });
